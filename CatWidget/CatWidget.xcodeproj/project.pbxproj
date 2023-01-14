@@ -26,6 +26,7 @@
 		33611C2D29725C5400F9A23C /* CatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33611C0C2972510A00F9A23C /* CatView.swift */; };
 		33611C2E29725C6500F9A23C /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33611C0A29724ECE00F9A23C /* CircularImageView.swift */; };
 		33611C2F29725C7200F9A23C /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33611C0729724D4500F9A23C /* Cat.swift */; };
+		33611C3029725E1900F9A23C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33611BFD29724BD200F9A23C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		33611C2029725C0000F9A23C /* WidgetCat.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetCat.intentdefinition; sourceTree = "<group>"; };
 		33611C2129725C0200F9A23C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33611C2329725C0200F9A23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33611C3129725E3300F9A23C /* WidgetCatExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetCatExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		33611BED29724BCF00F9A23C = {
 			isa = PBXGroup;
 			children = (
+				33611C3129725E3300F9A23C /* WidgetCatExtension.entitlements */,
 				33611BF829724BD000F9A23C /* CatWidget */,
 				33611C1929725C0000F9A23C /* WidgetCat */,
 				33611C1429725C0000F9A23C /* Frameworks */,
@@ -255,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33611C3029725E1900F9A23C /* Assets.xcassets in Resources */,
 				33611C2229725C0200F9A23C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetCatExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FRD38AYZF6;
@@ -508,6 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetCatExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FRD38AYZF6;

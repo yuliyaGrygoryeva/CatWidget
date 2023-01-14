@@ -10,41 +10,40 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    @AppStorage("cat", store: UserDefaults(suiteName: "group.Yuliya-Grygoryeva.CatWidget"))
+    var catData: Data = Data()
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), cat: Cat(image: "cat1", name: "First cat", realName: "Meow"))
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        completion(entry)
+        if let cat = try? JSONDecoder().decode(Cat.self, from: catData) {
+            let entry = SimpleEntry(date: Date(), configuration: configuration, cat: cat)
+            completion(entry)
+        }
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+        if let cat = try? JSONDecoder().decode(Cat.self, from: catData) {
+            let entry = SimpleEntry(date: Date(), configuration: configuration, cat: cat)
+            let timeline = Timeline(entries: [entry], policy: .never)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let cat: Cat
 }
 
 struct WidgetCatEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        CircularImageView(image: Image(entry.cat.image))
     }
 }
 
@@ -52,17 +51,18 @@ struct WidgetCat: Widget {
     let kind: String = "WidgetCat"
 
     var body: some WidgetConfiguration {
+        
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WidgetCatEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("My Cat Widget")
+        .description("This is an example of cat widget.")
     }
 }
 
 struct WidgetCat_Previews: PreviewProvider {
     static var previews: some View {
-        WidgetCatEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        WidgetCatEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), cat: Cat(image: "cat1", name: "cat", realName: "meow")))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

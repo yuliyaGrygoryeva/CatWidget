@@ -18,6 +18,7 @@ struct CircularImageView: View {
                 .stroke(Color
                     .indigo, lineWidth: 10))
                 .shadow(radius: 15)
+                .padding()
     }
 }
 

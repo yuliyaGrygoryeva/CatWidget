@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 let cats = [cat1, cat2, cat3]
 
@@ -27,6 +28,7 @@ struct ContentView: View {
     func saveToDefaults(cat: Cat){
         if let catData = try? JSONEncoder().encode(cat) {
             self.catData = catData
+            WidgetCenter.shared.reloadTimelines(ofKind: "WidgetCat")
         }
     }
 }
