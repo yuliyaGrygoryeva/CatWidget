@@ -7,15 +7,15 @@
 
 import SwiftUI
 
+let cats = [cat1, cat2, cat3]
+
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            ForEach(cats) { cat in
+                CatView(cat: cat)
+            }
         }
-        .padding()
     }
 }
 
